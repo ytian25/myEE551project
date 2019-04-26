@@ -15,10 +15,10 @@ It can be roughly divided into: the definition of interface and cube, the left, 
 6. Settings are mainly the interface parameters of the game.
 
 
-Enter: Game Start
-Pause: space pause
-Keyboard button up: rotation
-Keyboard button down left and right: position change
+Enter: Game Start.
+Pause: space pause.
+Keyboard button up: rotation.
+Keyboard button down left and right: position change.
 (ATTENTION:Due to technical reasons, the drop function needs to be realized by pressing the down key constantly. It can't automatically drop. Sorry.)
 
 Interface:
