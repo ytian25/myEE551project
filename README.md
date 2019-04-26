@@ -7,12 +7,12 @@ GENERAL THINKING
 It can be roughly divided into: the definition of interface and cube, the left, right, down movement, rotation, to judge whether touch the side or not, stopping(or docking),  and finally to judge the end of the game.
 
 
-1 main.py is the main program to control the whole program
-2 Functions.py mainly writes several frequently called functions
-3 Screens.py is responsible for screen display
-4 Squares. py will customize Tetris
-5 Events.py handles the left and right buttons
-6 Settings are mainly the interface parameters of the game.
+1. main.py is the main program to control the whole program
+2. Functions.py mainly writes several frequently called functions
+3. Screens.py is responsible for screen display
+4. Squares. py will customize Tetris
+5. Events.py handles the left and right buttons
+6. Settings are mainly the interface parameters of the game.
 
 
 Enter: Game Start
