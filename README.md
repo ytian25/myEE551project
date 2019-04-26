@@ -4,55 +4,49 @@ TETRIS
 
 GENERAL THINKING
 
-1.Main.py controls the whole program
-2.Functions.py saves game status
-3.Screens.py is responsible for drawing the interface
-4.Squares.py is responsible for the calculation of squares
-5.Events.py is responsible for updating input
-6.Settings.py Save Game Settings
-
-Before start, we need to know what we need to do:
-
-1.Computing, letting the computer know what to do next.
-2.Control, let the player operate.
-3.Interface, for players to see.
-
-COMPUTING
-
-* The calculation of game state (whether the game is active or not)
-Create a Status class to store the game status information, save it in functions, use it when the game status needs to be updated, and read the status information when refreshing the interface.
-
-* Storage of all block location information
-We can create a Squares class for the box and save it in squares. py.
-Create a two-dimensional list and specify that False is square-free and True is square-free.
-Create a coordinate curr_sq to save the current active box location.
-Create a list curr_shape containing several coordinates to save the position of the box around the current active box (several blocks around the central box). Note that curr_shape coordinates can be relative to curr_sq coordinates, so that curr_sq can be modified only for each fall or move.
-Of course, we need to specify the shape of the box, create a Settings class, save it in settings. py, and save the information.
-
-* Horizontal movement, vertical drop and rotation of the current active box
-
-* Determine when the current active box stops and generates a new box
-
-Add valid () to determine whether the movement, fall or rotation conflicts with the existing block. If the conflict rolls back to the previous conflict-free state.
-
-* Computation of output
+It can be roughly divided into: the definition of interface and cube, the left, right, down movement, rotation, to judge whether touch the side or not, stopping(or docking),  and finally to judge the end of the game.
 
 
-* Computation of input
+> main.py is the main program to control the whole program
+> Functions.py mainly writes several frequently called functions
+> Screens.py is responsible for screen display
+> Squares. py will customize Tetris
+> Events.py handles the left and right buttons
+> Settings are mainly the interface parameters of the game.
 
 
-CONTROLL
+Enter: Game Start
+Pause: space pause
+Keyboard button up: rotation
+Keyboard button down left and right: position change
+(ATTENTION:Due to technical reasons, the drop function needs to be realized by pressing the down key constantly. It can't automatically drop. Sorry.)
 
+Interface:
+The whole interface of Russian Tetris is divided into two parts, the game area on the left and the display area on the right, showing scores, speed, the next block style, etc.
+The game area is made up of small squares. In order to see it intuitively, I deliberately drew a grid line. Interface parameters can be modified within settings.py.
 
-INTERFACE
+Cube:
+There are seven species named O, I, Z, T, L, S and J.
+The named tuple in collections module is used to define the blocks.
+Get_block method to get blocks
+Get_next_block method to get the next box
+Directly define a square in a two-dimensional array, with dots. empty and 0 solid. (Use. to express empty space is to see intuitively, if you use blank space will not see clearly.
 
-Create a new screens.py to save the output method.
-Add update_screen() to draw the graph.
+Rotation:
+For example, type I, there are two forms: horizontal and vertical. The so-called rotation, on the surface, is to rotate the square clockwise by 90 degrees.
+But in practice, we do not really need to achieve this "rotation" effect.
+At the end of the implementation, these graphics are painted on the interface, and every time they are refreshed,
+Everything on the interface will be emptied and redrawn, so the rotation is just drawing the current square instead of drawing the previous shape.
+It's about drawing the shape after rotation. On the other hand, in some cases it is impossible to rotate.
+For example, type I vertical bar can not rotate when it is close to the left and right border.
 
-LAST STEP
-
-Add an infinite loop to main. py, calling check_events () and update_screen () in turn.
-
+The game_area variable:
+Represents the entire game area, using a two-dimensional array, when the interior is empty, using points.
+Update the part of the game_area area to 0 when a box arrives to prevent the next box from overlapping with the previous one and ensure that it is stacked together.
+Stop:
+When a square falls to the end or meets another square, it cannot fall.
+First of all, we need to determine whether we can stop. After the stop happens, we draw the non-empty dots of the current box onto the game area. To put it bluntly, copy the non-empty point of current_block into game_area according to its corresponding position.
+It also calculates whether a row is fully filled, and if it is fully filled, it will be eliminated.
 
 
 
